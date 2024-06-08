@@ -6,12 +6,6 @@ import { InteractionType } from "discord-tsx-factory/dist/enums";
 
 import "./declarations";
 
-interface IterableCommandData {
-  name: string;
-  type: Discord.ApplicationCommandOptionType;
-  options?: IterableCommandData[];
-}
-
 const originalCreateElement = Factory.createElement;
 function setBuilderProperties(builder: any, props: any) {
   builder.setName(props.name).setDescription(props.description);
@@ -181,7 +175,7 @@ require("discord-tsx-factory").Client = class Client extends Discord.Client {
     if (interaction.isCommand()) {
       const data = interaction.options.data[0];
       let id = `command_slash_${interaction.commandName}`;
-      function iterateCommandData(sub?: IterableCommandData): void {
+      function iterateCommandData(sub?: Discord.CommandInteractionOption): void {
         if (!sub || !sub.options) return;
         id += `_${sub.name}`;
         switch (sub.type) {
