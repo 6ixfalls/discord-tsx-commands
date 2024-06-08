@@ -1,5 +1,6 @@
 import * as Discord from "discord.js";
 import "discord-tsx-factory/dist/declarations";
+import { InteractionType } from "discord-tsx-factory/dist/enums";
 
 import { OptionToElementProps, Writeable } from "./utils";
 
@@ -84,6 +85,9 @@ declare module "discord.js" {
   export type CommandInteractionHandler = (
     interaction: Discord.CommandInteraction
   ) => void;
+  interface InteractionTypes {
+    [InteractionType.Slash]: CommandInteractionHandler;
+  }
 }
 
 declare module "discord-tsx-factory/dist/enums" {
