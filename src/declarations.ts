@@ -1,6 +1,6 @@
 import * as Discord from "discord.js";
 import "discord-tsx-factory/dist/declarations";
-import { InteractionType } from "discord-tsx-factory/dist/enums";
+import type { InteractionType } from "discord-tsx-factory/dist/enums";
 
 import { OptionToElementProps, Writeable } from "./utils";
 
@@ -11,16 +11,16 @@ declare global {
   namespace JSX {
     interface ChildResolvable {
       slash:
-        | Discord.SlashCommandAttachmentOption
-        | Discord.SlashCommandBooleanOption
-        | Discord.SlashCommandChannelOption
-        | Discord.SlashCommandIntegerOption
-        | Discord.SlashCommandMentionableOption
-        | Discord.SlashCommandNumberOption
-        | Discord.SlashCommandRoleOption
-        | Discord.SlashCommandStringOption
-        | Discord.SlashCommandUserOption
-        | Discord.SlashCommandBuilder;
+      | Discord.SlashCommandAttachmentOption
+      | Discord.SlashCommandBooleanOption
+      | Discord.SlashCommandChannelOption
+      | Discord.SlashCommandIntegerOption
+      | Discord.SlashCommandMentionableOption
+      | Discord.SlashCommandNumberOption
+      | Discord.SlashCommandRoleOption
+      | Discord.SlashCommandStringOption
+      | Discord.SlashCommandUserOption
+      | Discord.SlashCommandBuilder;
       group: Discord.SlashCommandBuilder;
       choice: never;
 
@@ -81,17 +81,14 @@ declare global {
   }
 }
 
-declare module "discord.js" {
-  export type CommandInteractionHandler = (
-    interaction: Discord.CommandInteraction
-  ) => void;
-  interface InteractionTypes {
-    [InteractionType.Slash]: CommandInteractionHandler;
-  }
-}
-
 declare module "discord-tsx-factory/dist/enums" {
   export enum InteractionType {
     Slash,
   }
+}
+
+declare module "discord.js" {
+  export type CommandInteractionHandler = (
+    interaction: Discord.CommandInteraction
+  ) => void;
 }
