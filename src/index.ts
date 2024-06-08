@@ -19,6 +19,8 @@ function setBuilderProperties(builder: any, props: any) {
     builder.setNameLocalizations(props.name_localizations);
   if (props.description_localizations)
     builder.setDescriptionLocalizations(props.description_localizations);
+  if (props.required)
+    builder.setRequired(props.required);
   return builder;
 }
 function addOption(
