@@ -36,8 +36,8 @@ function ElementBuilder(
         );
       const $ = new Discord.SlashCommandBuilder();
       setBuilderProperties($, props);
-      if (props.dmPermission) $.setDMPermission(props.dmPermission);
-      if (props.defaultMemberPermissions)
+      if (props.dmPermission !== undefined) $.setDMPermission(props.dmPermission);
+      if (props.defaultMemberPermissions !== undefined)
         $.setDefaultMemberPermissions(props.defaultMemberPermissions);
       for (const child of props.children.flat(Infinity))
         if (child instanceof Discord.SlashCommandBuilder)
